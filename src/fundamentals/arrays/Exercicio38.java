@@ -1,7 +1,7 @@
 /*
 Análise de Reais:
 Faça um programa que preencha um vetor com 10 números reais (float/double). O programa deve calcular e mostrar:
-A quantidade de números negativos presentes no vetor.
+A quantity de números negativos presentes no vetor.
 A soma de todos os números positivos
 */
 
