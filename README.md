@@ -4,20 +4,21 @@ Repository with my Java studies and exercises, organized by concept as I progres
 
 ## Project Structure
 
+```
 src/
 ├── fundamentals/
-│ ├── arrays/ # Array exercises
-│ ├── controlstructures/ # if/else, switch
-│ ├── logic/ # Algorithms and logic puzzles
-│ ├── loops/ # for, while, do-while
-│ ├── matrices/ # Multidimensional arrays
-│ └── strings/ # Text manipulation
+│   ├── arrays/             # Array exercises
+│   ├── controlstructures/  # if/else, switch
+│   ├── logic/              # Algorithms and logic puzzles
+│   ├── loops/               # for, while, do-while
+│   ├── matrices/            # Multidimensional arrays
+│   └── strings/             # Text manipulation
 └── oop/
-├── projectcamp/ # Encapsulation, enum, exception-based validation
-├── projectaccount/ # Console menu, layered architecture (entity/service)
-├── projectstock/ # Business rules with boolean return
-└── projectcomputer/ # BigDecimal, equals/hashCode
-
+    ├── projectcamp/         # Encapsulation, enum, exception-based validation
+    ├── projectaccount/      # Console menu, layered architecture (entity/service)
+    ├── projectstock/        # Business rules with boolean return
+    └── projectcomputer/     # BigDecimal, equals/hashCode
+```
 
 ## Topics Covered
 
@@ -30,6 +31,7 @@ src/
 Each exercise is self-contained and can be run directly from your IDE (IntelliJ, VS Code, etc.) by running the class that contains the `main` method.
 
 Via terminal (Java 11+):
+
 ```bash
 java src/path/to/Class.java
 ```
