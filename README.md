@@ -13,11 +13,12 @@ src/
 │   ├── loops/               # for, while, do-while
 │   ├── matrices/            # Multidimensional arrays
 │   └── strings/             # Text manipulation
-└── oop/
-    ├── projectcamp/         # Encapsulation, enum, exception-based validation
-    ├── projectaccount/      # Console menu, layered architecture (entity/service)
-    ├── projectstock/        # Business rules with boolean return
-    └── projectcomputer/     # BigDecimal, equals/hashCode
+└─└── oop/
+    ├── projectcamp/                    # Encapsulation, enum, exception-based validation
+    ├── projectaccount/                 # Console menu, layered architecture (entity/service)
+    ├── projectstock/                   # Business rules with boolean return
+    ├── projectcomputer/                # BigDecimal, equals/hashCode
+    └── projectgalacticfleetmanagement/ # One-to-many relationship, LocalDate, custom equals
 ```
 
 ## Topics Covered
