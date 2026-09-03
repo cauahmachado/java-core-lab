@@ -14,11 +14,11 @@ src/
 │   ├── matrices/            # Multidimensional arrays
 │   └── strings/             # Text manipulation
 └─└── oop/
-    ├── projectcamp/                    # Encapsulation, enum, exception-based validation
-    ├── projectaccount/                 # Console menu, layered architecture (entity/service)
-    ├── projectstock/                   # Business rules with boolean return
-    ├── projectcomputer/                # BigDecimal, equals/hashCode
-    └── projectgalacticfleetmanagement/ # One-to-many relationship, LocalDate, custom equals
+    ├── projectcamp/                    
+    ├── projectaccount/                
+    ├── projectstock/                   
+    ├── projectcomputer/                
+    └── projectgalacticfleetmanagement/ 
 ```
 
 ## Topics Covered
