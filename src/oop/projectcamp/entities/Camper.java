@@ -31,7 +31,7 @@ public class Camper {
 
     @Override
     public String toString() {
-        return "CamperService{" +
+        return "Camper{" +
                 "name='" + name + '\'' +
                 ", team=" + team +
                 ", age=" + age +
