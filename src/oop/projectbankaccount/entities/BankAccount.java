@@ -1,7 +1,5 @@
 package oop.projectbankaccount.entities;
 
-import java.util.Scanner;
-
 public class BankAccount {
     private final int idAccount;
     private String accountUsername;
@@ -18,26 +16,30 @@ public class BankAccount {
         this.accountBalance = initialDeposit;
     }
 
-    public void deposit(double amount){
-        if (amount<=0){
-            System.out.println("ERRO! Apenas valores positivos permitidos");
-            return;
+    public boolean deposit(double amount){
+        if (amount <= 0){
+            System.out.println("ERROR! Only positive values are allowed");
+            return false;
         }
         accountBalance += amount;
-        System.out.println("Deposito realizado com sucesso");
+        return true;
     }
 
-    public void withdraw(double amount){
-        if (amount<=0){
-            System.out.println("ERRO! Apenas valores positivos permitidos");
-            return;
+    public boolean withdraw(double amount){
+        if (amount <= 0){
+            System.out.println("ERROR! Only positive values are allowed");
+            return false;
+        }
+        if (accountBalance < amount + 5.00){
+            System.out.println("ERROR! Insufficient balance for this withdrawal (includes R$5.00 fee)");
+            return false;
         }
         accountBalance = accountBalance - amount - 5.00;
-        System.out.println("Saque realizado com sucesso");
+        return true;
     }
 
-    public void alterarNome(String novoNome){
-        this.accountUsername = novoNome;
+    public void changeName(String newName){
+        this.accountUsername = newName;
     }
 
 
