@@ -25,6 +25,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return String.format("%d | %-20s | %.2f",idProduto, nome,preco);
+        return String.format("%d | %-20s | %.2f \n", idProduto, nome,preco);
     }
 }
