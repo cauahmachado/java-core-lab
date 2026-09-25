@@ -2,6 +2,7 @@ package oop.projectshoppingcartmanagement.app;
 
 import oop.projectshoppingcartmanagement.entities.Carrinho;
 import oop.projectshoppingcartmanagement.entities.Cliente;
+import oop.projectshoppingcartmanagement.entities.ItemCarrinho;
 import oop.projectshoppingcartmanagement.entities.Produto;
 
 import java.util.ArrayList;
@@ -82,12 +83,38 @@ public class GerenciarCompras {
     }
 
     public void iniciarNovoCarrinho() {
-        System.out.println("Digite o nome: ");
-        String nome = scanner.nextLine();
-        System.out.println("Digite CPF: ");
-        String cpf = scanner.nextLine();
-        System.out.println("Digite email: ");
-        String email = scanner.nextLine();
+        String nome;
+        String cpf;
+        String email;
+
+        while (true) {
+            System.out.print("Digite o nome: ");
+            nome = scanner.nextLine();
+            if (nome.matches("^[A-Za-zÀ-ÖØ-öø-ÿ ]+$")) {
+                break;
+            }
+            System.out.println("ERRO! Digite apenas letras.");
+        }
+
+        while (true) {
+            System.out.print("Digite o CPF: ");
+            cpf = scanner.nextLine();
+            if (cpf.matches("\\d{11}")) {
+                break;
+            }
+
+            System.out.println("ERRO! O CPF deve conter 11 números.");
+        }
+
+        while (true) {
+            System.out.print("Digite email: ");
+            email = scanner.nextLine();
+            if (email.matches("^[^@\\s]+@[^@\\s]+$")) {
+                break;
+            }
+
+            System.out.println("ERRO! Digite um email válido.");
+        }
 
         Cliente cliente = new Cliente(cpf, nome, email);
         carrinhoAtivo = new Carrinho(cliente);
@@ -103,19 +130,31 @@ public class GerenciarCompras {
     }
 
     public void adicionarProduto() {
-        System.out.print(catalogoProdutos);
+        for (Produto produto : catalogoProdutos) {
+            System.out.print(produto);
+        }
         System.out.println("Digite o ID do produto: ");
+
         int escolhido;
         Produto produtoEscolhido = null;
         while (produtoEscolhido == null) {
-            escolhido = Integer.parseInt(scanner.nextLine());
-            for (Produto produto : catalogoProdutos) {
-                if (produto.getIdProduto() == escolhido) {
-                    produtoEscolhido = produto;
-                    break;
+            try {
+                escolhido = Integer.parseInt(scanner.nextLine());
+
+                for (Produto produto : catalogoProdutos) {
+                    if (produto.getIdProduto() == escolhido) {
+                        produtoEscolhido = produto;
+                        break;
+                    }
                 }
+
+                if (produtoEscolhido == null) {
+                    System.out.println("Produto não encontrado. Digite um ID válido.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("ERRO! Digite apenas números.");
             }
-            System.out.println("Produto não encontrado");
         }
 
         System.out.println("Digite a quantidade: ");
@@ -129,7 +168,7 @@ public class GerenciarCompras {
                 }
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Enter a valid number");
+                System.out.println("ERRO! Digite apenas números.");
             }
         }
 
@@ -145,23 +184,35 @@ public class GerenciarCompras {
             return;
         }
 
-        System.out.println(carrinhoAtivo.getItens());
+        for (ItemCarrinho item : carrinhoAtivo.getItens()) {
+            System.out.println("ID " + item.getProduto().getIdProduto() + " | " + item);
+        }
     }
 
     public void removerProduto() {
+
         if (carrinhoAtivo.estaVazio()) {
             System.out.println("Carrinho vazio, não há nada para remover.");
-        } else {
-            System.out.println(carrinhoAtivo.getItens());
-            System.out.println("Digite o ID do produto que deseja remover:");
-            int escolhido = Integer.parseInt(scanner.nextLine());
+            return;
+        }
+        boolean removido = false;
+        while (!removido) {
+            for (ItemCarrinho item : carrinhoAtivo.getItens()) {
+                System.out.println("ID " + item.getProduto().getIdProduto() + " | " + item);
+            }
+            try {
+                System.out.println("Digite o ID do produto que deseja remover:");
+                int escolhido = Integer.parseInt(scanner.nextLine());
 
-            boolean removido = carrinhoAtivo.removerProduto(escolhido);
+                removido = carrinhoAtivo.removerProduto(escolhido);
 
-            if (removido) {
-                System.out.println("Produto removido com sucesso.");
-            } else {
-                System.out.println("Produto não encontrado no carrinho.");
+                if (removido) {
+                    System.out.println("Produto removido com sucesso.");
+                } else {
+                    System.out.println("Produto não encontrado no carrinho.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ERRO! Digite apenas números. ");
             }
         }
     }
@@ -170,8 +221,10 @@ public class GerenciarCompras {
         if (carrinhoAtivo.estaVazio()) {
             System.out.println("Carrinho vazio, não há como finalizar compra.");
         } else {
-            System.out.println(carrinhoAtivo.getItens().toString());
-            System.out.print("Valor total à ser pago: "+ carrinhoAtivo.calcularTotal()+"\n");
+            for (ItemCarrinho item : carrinhoAtivo.getItens()) {
+                System.out.println("ID " + item.getProduto().getIdProduto() + " | " + item);
+            }
+            System.out.print("Valor total a ser pago: " + carrinhoAtivo.calcularTotal() + "\n");
             System.out.println("Recibo será enviado ao seu email. Obrigado!!");
             carrinhoAtivo = null;
         }
