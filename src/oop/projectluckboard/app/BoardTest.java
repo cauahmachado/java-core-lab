@@ -47,8 +47,9 @@ public class BoardTest {
                 int n = Integer.parseInt(sc.nextLine().trim());
                 if (n >= 0 && n <= 100) return n;
             } catch (NumberFormatException ignored) {
+                System.out.println("Entrada inválida. Digite um inteiro entre 0 e 100.");
             }
-            System.out.println("Entrada inválida. Digite um inteiro entre 0 e 100.");
+
         }
     }
 }
